@@ -1,5 +1,5 @@
 {
-    "name": "migratetoflarum/old-passwords",
+    "name": "esotericsoftware/old-passwords",
     "description": "Re-hash passwords from an old platform on the fly",
     "keywords": [
         "extension",
