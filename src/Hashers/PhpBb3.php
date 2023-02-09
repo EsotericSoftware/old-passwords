@@ -6,7 +6,7 @@ use Illuminate\Support\Arr;
 
 class PhpBb3 extends AbstractHasher {
 	function check(string $password, array $oldPassword): bool {
-		return phpbb_check_hash($password, Arr::get($oldPassword, 'password'))
+		return phpbb_check_hash($password, Arr::get($oldPassword, 'password'));
 	}
 
 	function phpbb_check_hash($password, $hash) {
