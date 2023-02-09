@@ -15,6 +15,7 @@ class HasherFactory
         'md5-double' => Md5Double::class,
         'md5-double-bcrypt' => Md5DoubleBcrypt::class,
         'phpass' => Phpass::class,
+        'phpbb3' => PhpBb3::class,
         'plain' => Plain::class,
         'sha1' => Sha1::class,
         'sha1-bcrypt' => Sha1Bcrypt::class,
