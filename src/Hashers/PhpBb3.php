@@ -6,16 +6,16 @@ use Illuminate\Support\Arr;
 
 class PhpBb3 extends AbstractHasher {
 	function check(string $password, array $oldPassword): bool {
-		return phpbb_check_hash($password, Arr::get($oldPassword, 'password'));
+		return self::phpbb_check_hash($password, Arr::get($oldPassword, 'password'));
 	}
 
-	function phpbb_check_hash($password, $hash) {
+	static function phpbb_check_hash($password, $hash) {
 		$itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-		if (strlen($hash) == 34) return (_hash_crypt_private($password, $hash, $itoa64) === $hash) ? true : false;
+		if (strlen($hash) == 34) return (self::_hash_crypt_private($password, $hash, $itoa64) === $hash) ? true : false;
 		return (md5($password) === $hash) ? true : false;
 	}
 
-	function _hash_crypt_private($password, $setting, &$itoa64) {
+	static function _hash_crypt_private($password, $setting, &$itoa64) {
 		$output = '*';
 		if (substr($setting, 0, 3) != '$H$' && substr($setting, 0, 3) != '$P$') return $output;
 
@@ -40,11 +40,11 @@ class PhpBb3 extends AbstractHasher {
 			} while (--$count);
 		}
 		$output = substr($setting, 0, 12);
-		$output .= _hash_encode64($hash, 16, $itoa64);
+		$output .= self::_hash_encode64($hash, 16, $itoa64);
 		return $output;
 	}
 
-	function _hash_encode64($input, $count, &$itoa64) {
+	static function _hash_encode64($input, $count, &$itoa64) {
 		$output = '';
 		$i = 0;
 		do {
